@@ -1,0 +1,44 @@
+{
+  "id": "2114664",
+  "name": "douban",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "700853",
+      "name": "头像",
+      "font_class": "touxiang",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "785018",
+      "name": "豆瓣",
+      "font_class": "douban",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "9810108",
+      "name": "分享",
+      "font_class": "fenxiang_2",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "11519587",
+      "name": "点赞",
+      "font_class": "dianzan",
+      "unicode": "e73f",
+      "unicode_decimal": 59199
+    },
+    {
+      "icon_id": "14145094",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 666px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+        }
+        img {
+            width: 666px;
+            height: 300px;
+        } 
+        .nav {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+        }
+
+        .nav li {
+            list-style: none;
+            float: left;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            background: #ccc;
+            text-align: center;
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+
+        .nav li.active {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="img/focus1.jpg">
+        <img src="img/focus2.jpg">
+        <img src="img/focus3.jpg">
+        <img src="img/focus4.jpg">
+        <ul class="nav">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <script>
+        // 步骤 & 思路
+        // 1. 得到4图片
+        // 2. 得到4个li
+        // 3. 让所有图片都隐藏
+        // 4. 定义一个变量，记住当前显示图片索引，并设置其显示
+        // 5. 设置定时器，每秒修改index索引
+
+        var myimg = document.getElementsByTagName("img");
+        var myli = document.getElementsByTagName("li");
+        var currindex = 0;   //当前显示图片的索引下标
+        function fn() {
+            currindex++;
+            // 遍历所有图片，为所有图片设置隐藏属性
+            for (var i = 0; i < myimg.length; i++) {
+                myimg[i].style.display = "none";
+                myli[i].className = "";
+            }
+            // 4  3
+            if (currindex > myimg.length - 1) {
+                currindex = 0;
+            }
+            myimg[currindex].style.display = "block";
+            myli[currindex].className = "active";
+            //当currindex为4时 图片已经没有了，数组里下标这里最大只能到3
+        }
+        setInterval(fn, 1000);
+    </script>
+</body>
+</html>

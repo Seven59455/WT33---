@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .banner {
+            width: 666px;
+            height: 300px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .banner ul{
+            position: absolute;
+            left: 0;
+            width: 2664px;
+        }
+        .banner ul li img{
+            width: 666px;
+        }
+
+        .banner ul a {
+            display: block;
+            height: 300px;
+        }
+
+        .banner ul li {
+            
+            float: left;
+        }
+
+        .banner ul li .active {
+            display: block;
+        }
+
+        .banner ol {
+            position: absolute;
+            bottom: 24px;
+            left: 351px;
+            transform: translateX(-50%);
+        }
+
+        .banner ol li {
+            float: left;
+            margin-right: 20px;
+            border-radius: 50px;
+            width: 20px;
+            line-height: 15px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .banner ol li.active {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <ul class="bannerBox">
+            <li class="active"><a href="#"><img src="img/01.jpg"></a></li>
+            <li><a href="#"><img src="img/02.jpg"></a></li>
+            <li><a href="#"><img src="img/03.jpg"></a></li>
+            <li><a href="#"><img src="img/04.jpg"></a></li>
+            <!-- <li><a href="#"><img src="img/05.jpg" alt=""></a></li> -->
+        </ul>
+        <ol class="menu">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ol>
+    </div>
+    <script>
+        $(function(){
+            var page = -1; //当前索引
+            var start = true ; //开始状态
+            function slide(){	//轮播函数
+                if(start){	//如果开始执行函数
+                    page++;	//page+1
+                    if(page==4){//如果轮播到第四张图片
+                        page = 0;  //0+-1=-1   让它从第一张图片开始
+                    }
+                    $(".bannerBox" ).animate({  //给父盒子设置动画效果
+                        left: -page*666 //
+                    },300)				//每隔0.3秒执行一次slide函数
+                    //设置导航1i
+                    $("ol li").removeClass("active");   //移除li on属性的样式
+                    $("ol li").eq(page).addClass("active")//轮播到第几张图片就给第几张图片添加on样式
+                }
+                setTimeout(slide,2000); //一次性定时器 2s后 ,再执行slide
+            }
+            slide();  //调用slide函数
+            
+            $(".banner").mouseover(function(){//鼠标移入到轮播图上时候停止设置偏移量
+                start = false;			//slide函数停止执行
+            }).mouseout(function(){		//鼠标移出
+                start = true;			//slide函数开始执行
+            })
+
+            $("ol li").mouseover(function(){  //鼠标移入li
+                page = $(this).index();	//当前鼠标所指就是轮播到的图片
+                $(".bannerBox").stop(true,true).animate({  //给.silde添加动画效果时停止slide函数的执行
+                    left: -page*666  					//图片到左侧的距离是每张图片乘以666的负数
+                },300)									//每隔0.3秒执行一次slide函数
+                $("ol li").removeClass("active");		//移除li on属性的样式
+                $("ol li").eq(page).addClass("active")	//轮播到第几张图片就给第几张图片添加on样式
+            })
+        })
+
+    </script>
+</body>
+</html>

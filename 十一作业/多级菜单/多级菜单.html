@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <select id="province">
+    <option value="0">请选择</option>
+  </select>
+
+  <select id="city">
+    <option value="0">请选择</option>
+  </select>
+
+  <select id="district">
+    <option value="0">请选择</option>
+  </select>
+
+  <script src="js/jquery-1.12.4.js"></script>
+  <script>
+    let province = document.getElementById('province')
+    let city = document.getElementById('city')
+    let district = document.getElementById('district')
+
+    $.get('./json/100000_province.json').then(data => {
+      let res = data.rows
+      for (let i = 0; i<res.length; i++) {
+        let option = document.createElement('option')
+        option.innerHTML = res[i].name
+        option.setAttribute('value', res[i].adcode)
+        province.appendChild(option)
+      }
+    })
+
+    province.onchange = function () {
+      city.innerHTML = '<option value="0">请选择</option>'
+      district.innerHTML = '<option value="0">请选择</option>'
+      let proChildren = this.children
+      let code
+      for (let i = 0; i < proChildren.length; i++) {
+        if (proChildren[i].selected) {
+          code = proChildren[i].getAttribute('value')
+          break
+        }
+      }
+      
+      $.get('./json/'+ code +'_city.json').then(data => {
+        let res = data.rows
+        for (let i = 0; i<res.length; i++) {
+            let option = document.createElement('option')
+            option.innerHTML = res[i].name
+            option.setAttribute('value', res[i].adcode)
+            city.appendChild(option)
+        }
+      })
+    }
+
+    city.onchange = function () {
+      district.innerHTML = '<option value="0">请选择</option>'
+      let cityChildren = this.children
+      let code
+      for (let i = 0; i<cityChildren.length; i++) {
+        if (cityChildren[i].selected) {
+          code = cityChildren[i].getAttribute('value')
+        }
+      }
+      $.get('./json/441900_district.json').then(data => {
+        let res = data.rows
+        for (let i = 0; i<res.length; i++) {
+            let option = document.createElement('option')
+            option.innerHTML = res[i].name
+            option.setAttribute('value', res[i].adcode)
+            district.appendChild(option)
+        }
+      })
+    }
+  </script>
+</body>
+</html>

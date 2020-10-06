@@ -1,0 +1,23 @@
+{
+  "id": "2114798",
+  "name": "chat",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "688458",
+      "name": "weixin",
+      "font_class": "weixin",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "3506877",
+      "name": "weibo",
+      "font_class": "weibo",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}
